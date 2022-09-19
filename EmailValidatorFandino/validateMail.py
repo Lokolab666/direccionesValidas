@@ -172,45 +172,52 @@ def validate_domain(word, k):
     return -1
 
 
+def validation(word):
+    if validate_at(word):
+        last_message.append("Yeah, this mail contains at")
+        for i, v in enumerate(word):
+            if len(word) >= 64:
+                last_message.append("Local-part is longer than 64 characters")
+                break
+            else:
+                if validate_character_local(v) == 3:
+                    if word[i - 1] == word[i]:
+                        last_message.append("repeat character dot")
+                        break
+                if word[i - 1] == '.' and word[i] == '@':
+                    last_message.append("repeat character continue -at")
+                    break
+
+                if validate_character_local(v) == 4:
+                    last_message.append("at 1")
+                    validate_domain(word, 1)
+                    break
+
+                if word[i] == '[at':
+                    if special_bracket(word) == 2:
+                        last_message.append("zero")
+                        validate_domain(validate_at(word), 2)
+                    break
+
+                if validate_character_local(v):
+                    last_message.append("OK")
+                else:
+                    last_message.append("Local-part with an invalidate character")
+                    break
+    else:
+        last_message.append('No, this mail no contains at')
+
+
 def validate(word):
     count_at = word.count('@')
-    if count_at > 1 or word.find('@') == -1:
-        last_message.append("Error. Ats is upper to 1")
-    else:
-        if validate_at(word):
-            last_message.append("Yeah, this mail contains at")
-            for i, v in enumerate(word):
-                if len(word) >= 64:
-                    last_message.append("Local-part is longer than 64 characters")
-                    break
-                else:
-                    if validate_character_local(v) == 3:
-                        if word[i - 1] == word[i]:
-                            last_message.append("repeat character dot")
-                            break
-                    if word[i - 1] == '.' and word[i] == '@':
-                        last_message.append("repeat character continue -at")
-                        break
-
-                    if validate_character_local(v) == 4:
-                        last_message.append("at 1")
-                        validate_domain(word, 1)
-                        break
-
-                    if word[i] == '[at':
-                        if special_bracket(word) == 2:
-                            last_message.append("zero")
-                            validate_domain(validate_at(word), 2)
-                        break
-
-                    if validate_character_local(v):
-                        last_message.append("OK")
-                    else:
-                        last_message.append("Local-part with an invalidate character")
-                        break
-
+    count_at_special = word.count('[at]')
+    if count_at_special != 1:
+        if count_at > 1 or word.find('@') == -1:
+            last_message.append("Error. Ats is upper to 1")
         else:
-            last_message.append('No, this mail no contains at')
+            validation(word)
+    else:
+        validation(word)
 
 
 def data_input():
@@ -223,5 +230,3 @@ def validate_mail():
     last = [last_message.pop(), last_message[-2]]
     # print(last)
     return last
-
-
