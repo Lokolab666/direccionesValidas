@@ -236,5 +236,5 @@ def data_input():
 
 def validate_mail():
     last = [last_message.pop(), last_message[-2]]
-    print(last)
+    #print(last)
     return last
