@@ -1,13 +1,12 @@
 Metadata-Version: 2.1
 Name: EmailValidatorFandino
-Version: 0.0.1
+Version: 0.0.2
 Summary: A validator for email
-Home-page: UNKNOWN
+Home-page: 
 Author: Cristian Fandiño
 Author-email: cristian.fandino02@uptc.edu.co
 License: MIT
 Keywords: email
-Platform: UNKNOWN
 Classifier: Development Status :: 5 - Production/Stable
 Classifier: Intended Audience :: Education
 Classifier: Operating System :: Microsoft :: Windows :: Windows 10
@@ -20,7 +19,6 @@ Program to validate emails, in language a Python algorithm is implemented that a
 Change Log
 ==========
 
-0.0.1 (14/09/2022)
+0.0.2 (18/09/2022)
 -------------------
-- First Release
-
+- Second Release. Fix bugs

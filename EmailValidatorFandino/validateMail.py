@@ -5,23 +5,27 @@ numbers_s = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 specials_s = ["!", "#", "$", "%", "&", "'", "*", "+", "/", "=", "?", "ˆ", "_", "´", "{", "|", "}", "-", "[", "]"]
 rule_dots = [".", "dot"]
 rule_ats = ["@", "at"]
-rule_line = ["-", "[", "]"]
+rule_line = ["-"]
 last_message = []
 
 
 def special_bracket(word):
-    separate_bracket = word.split("[")
+    separate_bracket = word.split("[at]")
+    print(separate_bracket)
     separate_one = separate_bracket[1]
-    separate_bracket_delimiter = separate_one.split("]")
-    separate_two = separate_bracket_delimiter[0]
+    separate_dot = separate_one.split("[dot]")
+    domain_bracket = ''
+    for x in separate_dot:
+        domain_bracket += '' + x
+
     for a, b in zip(rule_dots, rule_ats):
-        if a == separate_two:
+        if a == domain_bracket:
             return 1
 
-        if b == separate_two:
+        if b == domain_bracket:
             return 2
 
-    return -1
+    return domain_bracket
 
 
 def validate_character_local(v):
@@ -164,7 +168,7 @@ def validate_domain(word, k):
                     break
 
                 if validate_character_domain(v):
-                    last_message.append("si cha dom")
+                    last_message.append("OK 2")
                 else:
                     last_message.append("Domain-part with an invalidate character")
                     break
@@ -193,11 +197,15 @@ def validation(word):
                     validate_domain(word, 1)
                     break
 
-                if word[i] == '[at':
-                    if special_bracket(word) == 2:
-                        last_message.append("zero")
+                if word[i - 2] == '[' and word[i - 1] == 'a' and word[i] == 't':
+                    bracket = special_bracket(word)
+                    if bracket == 1 or bracket == 2:
+                        last_message.append("Invalid character in domain")
                         validate_domain(validate_at(word), 2)
-                    break
+                        break
+                    else:
+                        validate_domain(bracket, 2)
+                        break
 
                 if validate_character_local(v):
                     last_message.append("OK")
@@ -228,5 +236,5 @@ def data_input():
 
 def validate_mail():
     last = [last_message.pop(), last_message[-2]]
-    # print(last)
+    print(last)
     return last

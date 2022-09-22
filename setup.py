@@ -10,7 +10,7 @@ classifiers = [
 
 setup(
     name='EmailValidatorFandino',
-    version='0.0.1',
+    version='0.0.2',
     description='A validator for email',
     long_description=open('README.txt', encoding="utf8").read() + '\n\n' + open('CHANGELOG.txt', encoding="utf8").read(),
     url='',
