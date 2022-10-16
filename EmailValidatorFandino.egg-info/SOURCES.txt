@@ -4,6 +4,7 @@ MANIFEST.in
 README.txt
 setup.py
 EmailValidatorFandino/App.py
+EmailValidatorFandino/__init__.py
 EmailValidatorFandino/validateMail.py
 EmailValidatorFandino.egg-info/PKG-INFO
 EmailValidatorFandino.egg-info/SOURCES.txt

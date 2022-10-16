@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: EmailValidatorFandino
-Version: 0.0.2
+Version: 0.0.8
 Summary: A validator for email
 Home-page: 
 Author: Cristian Fandiño
@@ -19,6 +19,6 @@ Program to validate emails, in language a Python algorithm is implemented that a
 Change Log
 ==========
 
-0.0.2 (18/09/2022)
+0.0.8 (15/10/2022)
 -------------------
-- Second Release. Fix bugs
+- Fifth Release. Fix bugs

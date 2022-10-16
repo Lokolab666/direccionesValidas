@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-import validateMail as vm
+from EmailValidatorFandino import validateMail as vm
+# import validateMail as vm
 
 
 class Model:
